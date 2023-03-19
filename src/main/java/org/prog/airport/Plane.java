@@ -1,18 +1,15 @@
 package org.prog.airport;
 
+import java.util.ArrayList;
+
 public class Plane {
 
     public String flightId;
     public String destination;
-    public Passenger[] boardedPassenger = new Passenger[5];
+    public ArrayList<Passenger> boardedPassenger = new ArrayList<>();
 
     public void boardPassenger(Passenger passenger) {
-        for (int i = 0; i < boardedPassenger.length; i++) {
-            if (boardedPassenger[i] == null) {
-                boardedPassenger[i] = passenger;
-                return;
-            }
-        }
+        boardedPassenger.add(passenger);
     }
 
     public void takeOff() {
