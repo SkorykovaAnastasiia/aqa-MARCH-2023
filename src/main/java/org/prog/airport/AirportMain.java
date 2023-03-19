@@ -30,7 +30,7 @@ public class AirportMain {
         airport.boardPlane(passengerThree, planeTwo);
 
         passengerOne.name = "John";
-        planeOne.boardedPassenger.get(0).surname = "Doe";
+        planeOne.boardedPassenger[0].surname = "Doe";
 
         planeOne.takeOff();
         planeTwo.takeOff();
