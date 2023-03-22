@@ -31,6 +31,9 @@ public class AirportMain {
 
         passengerOne.name = "John";
         planeOne.boardedPassenger.get(0).surname = "Doe";
+        passengerOne.passengerSitNumber = "11A";
+
+        passengerTwo.passengerSitNumber = "11A";
 
         planeOne.takeOff();
         planeTwo.takeOff();
