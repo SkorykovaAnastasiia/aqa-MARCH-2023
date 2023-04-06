@@ -13,6 +13,7 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Optional;
 
 public class RozetkaNgTest {
     private WebDriver webDriver;
@@ -41,28 +42,21 @@ public class RozetkaNgTest {
     }
 
     @Test
-    public void testRozetkaSearch() throws InterruptedException {
+    public void testRozetkaSearch() {
         rozetkaSearch(SEARCH_STRING);
-        new WebDriverWait(webDriver, Duration.ofSeconds(35))
-                .until(ExpectedConditions.textToBePresentInElementLocated(By.className("search-header"), SEARCH_STRING));
         Assert.assertEquals(webDriver.findElement(By.className("catalog-heading")).getText(),
                 "«xiaomi redmi note 10 pro 6/64»");
     }
 
     @Test
-    public void testList() throws InterruptedException {
+    public void testList() {
         rozetkaSearch(SEARCH_STRING);
-        new WebDriverWait(webDriver, Duration.ofSeconds(35))
-                .until(ExpectedConditions.textToBePresentInElementLocated(By.className("search-header"), SEARCH_STRING));
         List<WebElement> elements = webDriver.findElements(By.className("goods-tile__title"));
-        boolean match = false;
-        for (WebElement element : elements) {
-            if (element.getText().toLowerCase().contains("xiaomi redmi note 10 pro 6/64")) {
-                match = true;
-                break;
-            }
-        }
-        Assert.assertTrue(match);
+        Optional<WebElement> anyMatch = elements.stream()
+                .filter(webElement -> webElement.getText().toLowerCase().contains("xiaomi redmi note 10 pro 6/64"))
+                .findFirst();
+
+        Assert.assertTrue(anyMatch.isPresent());
     }
 
     private WebDriver getDriver() {
@@ -79,5 +73,7 @@ public class RozetkaNgTest {
         WebElement searchBar = webDriver.findElement(By.name("search"));
         searchBar.sendKeys(searchValue);
         searchBar.sendKeys(Keys.ENTER);
+        new WebDriverWait(webDriver, Duration.ofSeconds(35))
+                .until(ExpectedConditions.textToBePresentInElementLocated(By.className("search-header"), SEARCH_STRING));
     }
 }
