@@ -11,4 +11,5 @@ public class UserDto {
     private String gender;
     private String nat;
     private NameDto name;
+    private LoginDto login;
 }
