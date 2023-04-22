@@ -20,7 +20,7 @@ public class SqlSteps {
         if (InetAddress.getLocalHost().getHostName().equals("DESKTOP-ELJTHIH")) {
             dbHostName = "jdbc:mysql://localhost:3306/db";
         } else {
-            dbHostName = "jdbc:mysql://mysql_db_1:3306/db";
+            dbHostName = "jdbc:mysql://mysql_default:3306/db";
         }
         Connection con = DriverManager.getConnection(dbHostName, "user", "password");
         Statement stmt = con.createStatement();
