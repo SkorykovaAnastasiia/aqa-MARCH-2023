@@ -29,6 +29,7 @@ public class CucumberHooks implements EventListener {
     public static WebDriver getDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
+        chromeOptions.addArguments("--headless");
         return new ChromeDriver(chromeOptions);
     }
 
